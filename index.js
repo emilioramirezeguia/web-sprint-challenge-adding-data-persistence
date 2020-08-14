@@ -1,5 +1,6 @@
 const express = require("express");
 const projectsRouter = require("./projects/projectsRouter");
+const tasksRouter = require("./tasks/tasksRouter");
 
 const server = express();
 
@@ -8,6 +9,8 @@ server.get("/api", (req, res) => {
 });
 
 server.use("/api/projects", projectsRouter);
+
+server.use("/api/tasks", tasksRouter);
 
 const port = 8000;
 server.listen(port, () => {
