@@ -3,7 +3,7 @@ const Projects = require("./projectsModel");
 
 const router = express.Router();
 
-// GET projects
+// GET all projects
 router.get("/", (req, res) => {
   Projects.getProjects()
     .then((projects) => {
@@ -14,7 +14,7 @@ router.get("/", (req, res) => {
     });
 });
 
-// Create (POST) project
+// Create (POST) a project
 router.post("/", (req, res) => {
   const project = req.body;
 
@@ -26,5 +26,7 @@ router.post("/", (req, res) => {
       res.status(500).json({ error: error.message });
     });
 });
+
+// Create (POST) a task for a project
 
 module.exports = router;
