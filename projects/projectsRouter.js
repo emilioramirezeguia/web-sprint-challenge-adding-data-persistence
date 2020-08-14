@@ -41,17 +41,43 @@ router.post("/", (req, res) => {
     });
 });
 
+// GET tasks for a specific project
+router.get("/:id/tasks", (req, res) => {
+  const projectID = req.params.id;
+
+  Projects.getProjectTasks(projectID)
+    .then((projectTasks) => {
+      res.status(200).json({ projectTasks });
+    })
+    .catch((error) => {
+      res.status(500).json({ error: error.message });
+    });
+});
+
 // Create (POST) a task for a project
 router.post("/:id/tasks", (req, res) => {
   const task = req.body;
   const projectID = req.params.id;
 
-  Projects.addTask(projectID, task)
+  Projects.addProjectTask(projectID, task)
     .then((task) => {
       res.status(201).json(task);
     })
     .catch((err) => {
       res.status(500).json({ message: "Failed to create new task" });
+    });
+});
+
+// GET resources for a specific project
+router.get("/:id/resources", (req, res) => {
+  const projectID = req.params.id;
+
+  Projects.getProjectResources(projectID)
+    .then((projectResources) => {
+      res.status(200).json({ projectResources });
+    })
+    .catch((error) => {
+      res.status(500).json({ error: error.message });
     });
 });
 
