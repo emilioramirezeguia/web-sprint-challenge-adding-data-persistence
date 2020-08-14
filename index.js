@@ -4,6 +4,7 @@ const tasksRouter = require("./tasks/tasksRouter");
 const resourcesRouter = require("./resources/resourcesRouter");
 
 const server = express();
+server.use(express.json());
 
 server.get("/api", (req, res) => {
   res.status(200).json({ message: "It's working... it's working!" });
